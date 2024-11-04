@@ -1,7 +1,9 @@
 package com.unisinos.portal_vagas.application.controllers;
+
+import com.unisinos.portal_vagas.domain.data.filters.VagaRequestFilter;
+import com.unisinos.portal_vagas.domain.data.model.Vaga;
+import com.unisinos.portal_vagas.domain.data.model.VagaRequest;
 import com.unisinos.portal_vagas.domain.service.VagaService;
-import com.unisinos.portal_vagas.infrasctucture.data.model.document.VagaDocument;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,34 +11,37 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/vagas")
+@RequestMapping("vagas/v1/vagas")
 public class VagaController {
-    @Autowired
+
     private VagaService vagaService;
 
+    public VagaController(VagaService vagaService) {
+        this.vagaService = vagaService;
+    }
+
     @PostMapping
-    public ResponseEntity<VagaDocument> criarVaga(@RequestBody VagaDocument vaga) {
-        VagaDocument novaVaga = vagaService.salvar(vaga);
+    public ResponseEntity<Vaga> criarVaga(@RequestBody VagaRequest vagaRequest) {
+        Vaga novaVaga = vagaService.salvar(vagaRequest);
         return new ResponseEntity<>(novaVaga, HttpStatus.CREATED);
     }
 
     @GetMapping
-    public ResponseEntity<List<VagaDocument>> listarVagas() {
-        List<VagaDocument> vagas = vagaService.listar();
+    public ResponseEntity<List<Vaga>> listarVagas(VagaRequestFilter vagaRequestFilter) {
+        List<Vaga> vagas = vagaService.listar(vagaRequestFilter);
         return new ResponseEntity<>(vagas, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<VagaDocument> buscarVagaPorId(@PathVariable String id) {
+    public ResponseEntity<Vaga> buscarVagaPorId(@PathVariable String id) {
         return vagaService.buscarPorId(id)
                 .map(vaga -> new ResponseEntity<>(vaga, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<VagaDocument> atualizarVaga(@PathVariable String id, @RequestBody VagaDocument vaga) {
-        vaga.setId(id);
-        VagaDocument vagaAtualizada = vagaService.salvar(vaga);
+    public ResponseEntity<Vaga> atualizarVaga(@PathVariable String id, @RequestBody VagaRequest vagaRequest) {
+        Vaga vagaAtualizada = vagaService.atualizar(id, vagaRequest);
         return new ResponseEntity<>(vagaAtualizada, HttpStatus.OK);
     }
 

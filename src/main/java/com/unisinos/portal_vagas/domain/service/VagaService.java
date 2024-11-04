@@ -1,8 +1,11 @@
 package com.unisinos.portal_vagas.domain.service;
 
-import com.unisinos.portal_vagas.infrasctucture.data.model.document.VagaDocument;
-import com.unisinos.portal_vagas.infrasctucture.repository.persistance.VagaRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.unisinos.portal_vagas.domain.data.filters.VagaFilter;
+import com.unisinos.portal_vagas.domain.data.filters.VagaRequestFilter;
+import com.unisinos.portal_vagas.domain.data.mapper.VagaMapper;
+import com.unisinos.portal_vagas.domain.data.model.Vaga;
+import com.unisinos.portal_vagas.domain.data.model.VagaRequest;
+import com.unisinos.portal_vagas.domain.repositories.VagaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,22 +13,35 @@ import java.util.Optional;
 
 @Service
 public class VagaService {
-    @Autowired
+
     private VagaRepository vagaRepository;
+    private VagaMapper vagaMapper;
 
-    public VagaDocument salvar(VagaDocument vaga) {
-        return vagaRepository.save(vaga);
+    public VagaService(VagaRepository vagaRepository, VagaMapper vagaMapper) {
+        this.vagaRepository = vagaRepository;
+        this.vagaMapper = vagaMapper;
     }
 
-    public List<VagaDocument> listar() {
-        return vagaRepository.findAll();
+    public Vaga salvar(VagaRequest vagaRequest) {
+        Vaga vaga = vagaMapper.convertToVaga(vagaRequest);
+        return vagaRepository.criar(vaga);
     }
 
-    public Optional<VagaDocument> buscarPorId(String id) {
-        return vagaRepository.findById(id);
+    public List<Vaga> listar(VagaRequestFilter vagaRequestFilter) {
+        VagaFilter vagaFilter = vagaMapper.convertToVagaFilter(vagaRequestFilter);
+        return vagaRepository.buscarVagaPorFiltro(vagaFilter);
+    }
+
+    public Optional<Vaga> buscarPorId(String id) {
+        return vagaRepository.buscarPorId(id);
+    }
+
+    public Vaga atualizar(String id, VagaRequest vagaRequest) {
+        Vaga vaga = vagaMapper.convertToVaga(vagaRequest);
+        return vagaRepository.atualizar(id, vaga);
     }
 
     public void deletar(String id) {
-        vagaRepository.deleteById(id);
+        vagaRepository.deletar(id);
     }
 }

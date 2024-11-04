@@ -5,5 +5,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface VagaRepository extends MongoRepository<VagaDocument, String> {
+public interface VagaMongoRepository extends MongoRepository<VagaDocument, String> {
 }
