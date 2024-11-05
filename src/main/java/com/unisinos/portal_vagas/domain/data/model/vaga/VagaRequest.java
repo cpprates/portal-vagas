@@ -1,4 +1,4 @@
-package com.unisinos.portal_vagas.domain.data.model;
+package com.unisinos.portal_vagas.domain.data.model.vaga;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;

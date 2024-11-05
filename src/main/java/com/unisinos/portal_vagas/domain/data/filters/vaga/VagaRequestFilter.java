@@ -1,4 +1,4 @@
-package com.unisinos.portal_vagas.domain.data.filters;
+package com.unisinos.portal_vagas.domain.data.filters.vaga;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 

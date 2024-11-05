@@ -1,8 +1,8 @@
-package com.unisinos.portal_vagas.application.controllers;
+package com.unisinos.portal_vagas.application.controllers.vaga;
 
-import com.unisinos.portal_vagas.domain.data.filters.VagaRequestFilter;
-import com.unisinos.portal_vagas.domain.data.model.Vaga;
-import com.unisinos.portal_vagas.domain.data.model.VagaRequest;
+import com.unisinos.portal_vagas.domain.data.filters.vaga.VagaRequestFilter;
+import com.unisinos.portal_vagas.domain.data.model.vaga.Vaga;
+import com.unisinos.portal_vagas.domain.data.model.vaga.VagaRequest;
 import com.unisinos.portal_vagas.domain.service.VagaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("vagas/v1/vagas")
+@RequestMapping("portal-vagas/vagas/v1/vagas")
 public class VagaController {
 
     private VagaService vagaService;
@@ -22,7 +22,7 @@ public class VagaController {
 
     @PostMapping
     public ResponseEntity<Vaga> criarVaga(@RequestBody VagaRequest vagaRequest) {
-        Vaga novaVaga = vagaService.salvar(vagaRequest);
+        Vaga novaVaga = vagaService.cadastrar(vagaRequest);
         return new ResponseEntity<>(novaVaga, HttpStatus.CREATED);
     }
 

@@ -1,4 +1,4 @@
-package com.unisinos.portal_vagas.infrasctucture.data.model.document;
+package com.unisinos.portal_vagas.infrasctucture.data.model.document.vaga;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -11,6 +11,7 @@ public class VagaDocument {
 
     @Indexed(unique = true)
     private String titulo;
+
     private String descricao;
     private String empresa;
     private String localizacao;

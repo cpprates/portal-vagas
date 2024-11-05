@@ -1,11 +1,11 @@
 package com.unisinos.portal_vagas.domain.service;
 
-import com.unisinos.portal_vagas.domain.data.filters.VagaFilter;
-import com.unisinos.portal_vagas.domain.data.filters.VagaRequestFilter;
-import com.unisinos.portal_vagas.domain.data.mapper.VagaMapper;
-import com.unisinos.portal_vagas.domain.data.model.Vaga;
-import com.unisinos.portal_vagas.domain.data.model.VagaRequest;
-import com.unisinos.portal_vagas.domain.repositories.VagaRepository;
+import com.unisinos.portal_vagas.domain.data.filters.vaga.VagaFilter;
+import com.unisinos.portal_vagas.domain.data.filters.vaga.VagaRequestFilter;
+import com.unisinos.portal_vagas.domain.data.mapper.vaga.VagaMapper;
+import com.unisinos.portal_vagas.domain.data.model.vaga.Vaga;
+import com.unisinos.portal_vagas.domain.data.model.vaga.VagaRequest;
+import com.unisinos.portal_vagas.domain.repositories.vaga.VagaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,7 +22,7 @@ public class VagaService {
         this.vagaMapper = vagaMapper;
     }
 
-    public Vaga salvar(VagaRequest vagaRequest) {
+    public Vaga cadastrar(VagaRequest vagaRequest) {
         Vaga vaga = vagaMapper.convertToVaga(vagaRequest);
         return vagaRepository.criar(vaga);
     }
