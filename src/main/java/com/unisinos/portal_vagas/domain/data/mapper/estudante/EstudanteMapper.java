@@ -1,7 +1,7 @@
 package com.unisinos.portal_vagas.domain.data.mapper.estudante;
 
-import com.unisinos.portal_vagas.domain.data.filters.estudante.EstudanteFilter;
-import com.unisinos.portal_vagas.domain.data.filters.estudante.EstudanteRequestFilter;
+import com.unisinos.portal_vagas.domain.data.model.estudante.EstudanteFilter;
+import com.unisinos.portal_vagas.domain.data.model.estudante.EstudanteRequestFilter;
 import com.unisinos.portal_vagas.domain.data.model.estudante.Estudante;
 import com.unisinos.portal_vagas.domain.data.model.estudante.EstudanteRequest;
 import org.mapstruct.Mapper;

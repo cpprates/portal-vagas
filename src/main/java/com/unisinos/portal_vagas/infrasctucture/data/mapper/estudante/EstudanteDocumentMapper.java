@@ -1,4 +1,4 @@
-package com.unisinos.portal_vagas.infrasctucture.mappers.estudante;
+package com.unisinos.portal_vagas.infrasctucture.data.mapper.estudante;
 
 import com.unisinos.portal_vagas.domain.data.model.estudante.Estudante;
 import com.unisinos.portal_vagas.infrasctucture.data.model.document.estudante.EstudanteDocument;

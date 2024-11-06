@@ -1,4 +1,4 @@
-package com.unisinos.portal_vagas.infrasctucture.mappers.vaga;
+package com.unisinos.portal_vagas.infrasctucture.data.mapper.vaga;
 
 import com.unisinos.portal_vagas.domain.data.model.vaga.Vaga;
 import com.unisinos.portal_vagas.infrasctucture.data.model.document.vaga.VagaDocument;

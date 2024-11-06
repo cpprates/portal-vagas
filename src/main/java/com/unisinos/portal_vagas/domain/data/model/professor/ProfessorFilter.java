@@ -1,4 +1,4 @@
-package com.unisinos.portal_vagas.domain.data.filters.professor;
+package com.unisinos.portal_vagas.domain.data.model.professor;
 
 public class ProfessorFilter {
 

@@ -1,6 +1,6 @@
 package com.unisinos.portal_vagas.domain.repositories.estudante;
 
-import com.unisinos.portal_vagas.domain.data.filters.estudante.EstudanteFilter;
+import com.unisinos.portal_vagas.domain.data.model.estudante.EstudanteFilter;
 import com.unisinos.portal_vagas.domain.data.model.estudante.Estudante;
 
 import java.util.List;

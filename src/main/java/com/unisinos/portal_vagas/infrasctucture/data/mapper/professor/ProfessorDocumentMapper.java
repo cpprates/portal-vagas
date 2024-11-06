@@ -1,4 +1,4 @@
-package com.unisinos.portal_vagas.infrasctucture.mappers.professor;
+package com.unisinos.portal_vagas.infrasctucture.data.mapper.professor;
 
 import com.unisinos.portal_vagas.domain.data.model.professor.Professor;
 import com.unisinos.portal_vagas.infrasctucture.data.model.document.professor.ProfessorDocument;

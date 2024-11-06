@@ -1,10 +1,10 @@
 package com.unisinos.portal_vagas.infrasctucture.repository.persistance.professor;
 
-import com.unisinos.portal_vagas.domain.data.filters.professor.ProfessorFilter;
+import com.unisinos.portal_vagas.domain.data.model.professor.ProfessorFilter;
 import com.unisinos.portal_vagas.domain.data.model.professor.Professor;
 import com.unisinos.portal_vagas.domain.repositories.professor.ProfessorRepository;
 import com.unisinos.portal_vagas.infrasctucture.data.model.document.professor.ProfessorDocument;
-import com.unisinos.portal_vagas.infrasctucture.mappers.professor.ProfessorDocumentMapper;
+import com.unisinos.portal_vagas.infrasctucture.data.mapper.professor.ProfessorDocumentMapper;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;

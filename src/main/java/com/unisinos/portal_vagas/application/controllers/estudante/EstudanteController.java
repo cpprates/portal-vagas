@@ -1,6 +1,6 @@
 package com.unisinos.portal_vagas.application.controllers.estudante;
 
-import com.unisinos.portal_vagas.domain.data.filters.estudante.EstudanteRequestFilter;
+import com.unisinos.portal_vagas.domain.data.model.estudante.EstudanteRequestFilter;
 import com.unisinos.portal_vagas.domain.data.model.estudante.Estudante;
 import com.unisinos.portal_vagas.domain.data.model.estudante.EstudanteRequest;
 import com.unisinos.portal_vagas.domain.service.EstudanteService;

@@ -1,7 +1,7 @@
 package com.unisinos.portal_vagas.domain.service;
 
-import com.unisinos.portal_vagas.domain.data.filters.estudante.EstudanteFilter;
-import com.unisinos.portal_vagas.domain.data.filters.estudante.EstudanteRequestFilter;
+import com.unisinos.portal_vagas.domain.data.model.estudante.EstudanteFilter;
+import com.unisinos.portal_vagas.domain.data.model.estudante.EstudanteRequestFilter;
 import com.unisinos.portal_vagas.domain.data.mapper.estudante.EstudanteMapper;
 import com.unisinos.portal_vagas.domain.data.model.estudante.Estudante;
 import com.unisinos.portal_vagas.domain.data.model.estudante.EstudanteRequest;

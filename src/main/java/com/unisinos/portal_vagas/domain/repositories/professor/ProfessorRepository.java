@@ -1,6 +1,6 @@
 package com.unisinos.portal_vagas.domain.repositories.professor;
 
-import com.unisinos.portal_vagas.domain.data.filters.professor.ProfessorFilter;
+import com.unisinos.portal_vagas.domain.data.model.professor.ProfessorFilter;
 import com.unisinos.portal_vagas.domain.data.model.professor.Professor;
 
 import java.util.List;

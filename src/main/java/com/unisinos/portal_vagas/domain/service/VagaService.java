@@ -1,7 +1,7 @@
 package com.unisinos.portal_vagas.domain.service;
 
-import com.unisinos.portal_vagas.domain.data.filters.vaga.VagaFilter;
-import com.unisinos.portal_vagas.domain.data.filters.vaga.VagaRequestFilter;
+import com.unisinos.portal_vagas.domain.data.model.vaga.VagaFilter;
+import com.unisinos.portal_vagas.domain.data.model.vaga.VagaRequestFilter;
 import com.unisinos.portal_vagas.domain.data.mapper.vaga.VagaMapper;
 import com.unisinos.portal_vagas.domain.data.model.vaga.Vaga;
 import com.unisinos.portal_vagas.domain.data.model.vaga.VagaRequest;

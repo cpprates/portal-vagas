@@ -1,10 +1,10 @@
 package com.unisinos.portal_vagas.infrasctucture.repository.persistance.estudante;
 
-import com.unisinos.portal_vagas.domain.data.filters.estudante.EstudanteFilter;
+import com.unisinos.portal_vagas.domain.data.model.estudante.EstudanteFilter;
 import com.unisinos.portal_vagas.domain.data.model.estudante.Estudante;
 import com.unisinos.portal_vagas.domain.repositories.estudante.EstudanteRepository;
 import com.unisinos.portal_vagas.infrasctucture.data.model.document.estudante.EstudanteDocument;
-import com.unisinos.portal_vagas.infrasctucture.mappers.estudante.EstudanteDocumentMapper;
+import com.unisinos.portal_vagas.infrasctucture.data.mapper.estudante.EstudanteDocumentMapper;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;

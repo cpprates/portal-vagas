@@ -1,4 +1,4 @@
-package com.unisinos.portal_vagas.domain.data.filters.vaga;
+package com.unisinos.portal_vagas.domain.data.model.vaga;
 
 public class VagaFilter {
 

@@ -1,10 +1,10 @@
 package com.unisinos.portal_vagas.infrasctucture.repository.persistance.vaga;
 
-import com.unisinos.portal_vagas.domain.data.filters.vaga.VagaFilter;
+import com.unisinos.portal_vagas.domain.data.model.vaga.VagaFilter;
 import com.unisinos.portal_vagas.domain.data.model.vaga.Vaga;
 import com.unisinos.portal_vagas.domain.repositories.vaga.VagaRepository;
 import com.unisinos.portal_vagas.infrasctucture.data.model.document.vaga.VagaDocument;
-import com.unisinos.portal_vagas.infrasctucture.mappers.vaga.VagaDocumentMapper;
+import com.unisinos.portal_vagas.infrasctucture.data.mapper.vaga.VagaDocumentMapper;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;

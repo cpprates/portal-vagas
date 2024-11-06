@@ -1,6 +1,6 @@
 package com.unisinos.portal_vagas.domain.repositories.vaga;
 
-import com.unisinos.portal_vagas.domain.data.filters.vaga.VagaFilter;
+import com.unisinos.portal_vagas.domain.data.model.vaga.VagaFilter;
 import com.unisinos.portal_vagas.domain.data.model.vaga.Vaga;
 
 import java.util.List;

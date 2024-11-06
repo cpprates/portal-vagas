@@ -1,6 +1,6 @@
 package com.unisinos.portal_vagas.application.controllers.professor;
 
-import com.unisinos.portal_vagas.domain.data.filters.professor.ProfessorRequestFilter;
+import com.unisinos.portal_vagas.domain.data.model.professor.ProfessorRequestFilter;
 import com.unisinos.portal_vagas.domain.data.model.professor.Professor;
 import com.unisinos.portal_vagas.domain.data.model.professor.ProfessorRequest;
 import com.unisinos.portal_vagas.domain.service.ProfessorService;
