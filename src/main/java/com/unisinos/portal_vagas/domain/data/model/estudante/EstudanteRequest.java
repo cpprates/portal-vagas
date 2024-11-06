@@ -19,7 +19,7 @@ public class EstudanteRequest {
     @NotBlank
     private String curso;
 
-    @Schema(description = "Email do estudante", example = "mariaflor@edu.unisinos.br")
+    @Schema(description = "E-mail do estudante", example = "mariaflor@edu.unisinos.br")
     @NotBlank
     private String email;
 

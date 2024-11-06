@@ -27,7 +27,7 @@ public class ProfessorController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Professor>> listarProfessores(ProfessorRequestFilter professorRequestFilter) {
+    public ResponseEntity<List<Professor>> listarProfessores(@RequestBody ProfessorRequestFilter professorRequestFilter) {
         List<Professor> professores = professorService.listarProfessores(professorRequestFilter);
         return new ResponseEntity<>(professores, HttpStatus.OK);
     }
