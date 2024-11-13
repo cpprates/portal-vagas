@@ -1,7 +1,9 @@
 package com.unisinos.portal_vagas.infrasctucture.repository.persistance.estudante;
 
+import com.unisinos.portal_vagas.domain.data.model.estudante.EstudanteCandidatura;
 import com.unisinos.portal_vagas.domain.data.model.estudante.EstudanteFilter;
 import com.unisinos.portal_vagas.domain.data.model.estudante.Estudante;
+import com.unisinos.portal_vagas.domain.data.model.vaga.Vaga;
 import com.unisinos.portal_vagas.domain.repositories.estudante.EstudanteRepository;
 import com.unisinos.portal_vagas.infrasctucture.data.model.document.estudante.EstudanteDocument;
 import com.unisinos.portal_vagas.infrasctucture.data.mapper.estudante.EstudanteDocumentMapper;
@@ -10,6 +12,8 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -31,14 +35,23 @@ public class EstudanteRepositoryImpl implements EstudanteRepository {
     }
 
     @Override
-    public Estudante criarPerfilEstudante(Estudante estudante) {
+    public Estudante criar(Estudante estudante) {
         EstudanteDocument estudanteDocument = estudanteDocumentMapper.convertToEstudanteDocument(estudante);
         EstudanteDocument estudanteCriado = estudanteMongoRepository.save(estudanteDocument);
         return estudanteDocumentMapper.convertToEstudante(estudanteCriado);
     }
 
     @Override
-    public List<Estudante> listarEstudantePorFiltro(EstudanteFilter estudanteFilter) {
+    public EstudanteCandidatura criarCandidatura(Estudante estudante, EstudanteCandidatura candidatura) {
+        EstudanteDocument estudanteDocument = estudanteDocumentMapper.convertToEstudanteDocument(estudante);
+        if(estudanteDocument.getCandidaturas() == null) estudanteDocument.setCandidaturas(new ArrayList<>());
+        estudanteDocument.getCandidaturas().add(candidatura);
+        estudanteMongoRepository.save(estudanteDocument);
+        return candidatura;
+    }
+
+    @Override
+    public List<Estudante> listarPorFiltro(EstudanteFilter estudanteFilter) {
         Query query = new Query();
 
         if (estudanteFilter.getNome() != null && !estudanteFilter.getNome().isEmpty()) {

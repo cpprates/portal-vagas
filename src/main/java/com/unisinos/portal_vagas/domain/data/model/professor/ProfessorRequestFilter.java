@@ -1,11 +1,22 @@
 package com.unisinos.portal_vagas.domain.data.model.professor;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 public class ProfessorRequestFilter {
 
+    @Schema(description = "Nome do professor", example = "José Campos")
     private String nome;
+
+    @Schema(description = "E-mail do professor", example = "jcampos@unisinos.br")
     private String email;
+
+    @Schema(description = "Curso de formacão", example = "Ciência da Computacão - PhD")
     private String formacao;
+
+    @Schema(description = "Área que atua", example = "Banco de Dados")
     private String areaAtuacao;
+
+    @Schema(description = "Departamento que trabalha", example = "Escola Politécnica")
     private String departamento;
 
     public String getNome() {

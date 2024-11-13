@@ -13,6 +13,7 @@ public class Estudante {
     private List<String> tecnologias;
     private String textoApresentacao;
     private String site;
+    private List<EstudanteCandidatura> candidaturas;
 
     public String getId() {
         return id;
@@ -84,5 +85,13 @@ public class Estudante {
 
     public void setSite(String site) {
         this.site = site;
+    }
+
+    public List<EstudanteCandidatura> getCandidaturas() {
+        return candidaturas;
+    }
+
+    public void setCandidaturas(List<EstudanteCandidatura> candidaturas) {
+        this.candidaturas = candidaturas;
     }
 }

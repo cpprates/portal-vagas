@@ -2,6 +2,7 @@ package com.unisinos.portal_vagas.domain.data.model.professor;
 
 public class Professor {
 
+    private String id;
     private String nome;
     private String email;
     private String formacao;
@@ -55,5 +56,13 @@ public class Professor {
 
     public void setCoordenador(boolean coordenador) {
         this.coordenador = coordenador;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

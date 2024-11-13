@@ -1,5 +1,6 @@
 package com.unisinos.portal_vagas.application.controllers.estudante;
 
+import com.unisinos.portal_vagas.domain.data.model.estudante.EstudanteCandidatura;
 import com.unisinos.portal_vagas.domain.data.model.estudante.EstudanteRequestFilter;
 import com.unisinos.portal_vagas.domain.data.model.estudante.Estudante;
 import com.unisinos.portal_vagas.domain.data.model.estudante.EstudanteRequest;
@@ -21,14 +22,14 @@ public class EstudanteController {
     }
 
     @PostMapping
-    public ResponseEntity<Estudante> criarPerfilEstudante(@RequestBody EstudanteRequest estudanteRequest) {
-        Estudante novoEstudante = estudanteService.criarPerfilEstudante(estudanteRequest);
+    public ResponseEntity<Estudante> criarEstudante(@RequestBody EstudanteRequest estudanteRequest) {
+        Estudante novoEstudante = estudanteService.criarEstudante(estudanteRequest);
         return new ResponseEntity<>(novoEstudante, HttpStatus.CREATED);
     }
 
     @GetMapping
     public ResponseEntity<List<Estudante>> listarEstudantes(EstudanteRequestFilter estudanteRequestFilter) {
-        List<Estudante> estudantes = estudanteService.listar(estudanteRequestFilter);
+        List<Estudante> estudantes = estudanteService.listarEstudantes(estudanteRequestFilter);
         return new ResponseEntity<>(estudantes, HttpStatus.OK);
     }
 
@@ -40,14 +41,20 @@ public class EstudanteController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Estudante> atualizarPerfilEstudante(@PathVariable String id, @RequestBody EstudanteRequest estudanteRequest) {
-        Estudante estudanteAtualizado = estudanteService.atualizar(id, estudanteRequest);
+    public ResponseEntity<Estudante> atualizarEstudante(@PathVariable String id, @RequestBody EstudanteRequest estudanteRequest) {
+        Estudante estudanteAtualizado = estudanteService.atualizarEstudante(id, estudanteRequest);
         return new ResponseEntity<>(estudanteAtualizado, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletarPerfilEstudante(@PathVariable String id) {
-        estudanteService.deletar(id);
+    public ResponseEntity<Void> deletarEstudante(@PathVariable String id) {
+        estudanteService.deletarEstudante(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @PostMapping("/{id}/candidatura/{idVaga}")
+    public ResponseEntity<EstudanteCandidatura> criarCandidatura(@PathVariable String id, @PathVariable String idVaga) {
+        EstudanteCandidatura novaCandidatura = estudanteService.criarCandidatura(id, idVaga);
+        return new ResponseEntity<>(novaCandidatura, HttpStatus.CREATED);
     }
 }

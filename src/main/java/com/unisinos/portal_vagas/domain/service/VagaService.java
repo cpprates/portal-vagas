@@ -22,26 +22,26 @@ public class VagaService {
         this.vagaMapper = vagaMapper;
     }
 
-    public Vaga cadastrar(VagaRequest vagaRequest) {
-        Vaga vaga = vagaMapper.convertToVaga(vagaRequest);
+    public Vaga criarVaga(String idProfessor, VagaRequest vagaRequest) {
+        Vaga vaga = vagaMapper.convertToVaga(idProfessor, vagaRequest);
         return vagaRepository.criar(vaga);
     }
 
-    public List<Vaga> listar(VagaRequestFilter vagaRequestFilter) {
+    public List<Vaga> listarVagas(VagaRequestFilter vagaRequestFilter) {
         VagaFilter vagaFilter = vagaMapper.convertToVagaFilter(vagaRequestFilter);
         return vagaRepository.buscarVagaPorFiltro(vagaFilter);
     }
 
-    public Optional<Vaga> buscarPorId(String id) {
+    public Optional<Vaga> buscarVagaPorId(String id) {
         return vagaRepository.buscarPorId(id);
     }
 
-    public Vaga atualizar(String id, VagaRequest vagaRequest) {
-        Vaga vaga = vagaMapper.convertToVaga(vagaRequest);
+    public Vaga atualizarVaga(String id, VagaRequest vagaRequest) {
+        Vaga vaga = vagaMapper.convertToVaga(id, vagaRequest);
         return vagaRepository.atualizar(id, vaga);
     }
 
-    public void deletar(String id) {
+    public void deletarVaga(String id) {
         vagaRepository.deletar(id);
     }
 }

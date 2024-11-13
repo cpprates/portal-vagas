@@ -1,5 +1,6 @@
 package com.unisinos.portal_vagas.domain.repositories.estudante;
 
+import com.unisinos.portal_vagas.domain.data.model.estudante.EstudanteCandidatura;
 import com.unisinos.portal_vagas.domain.data.model.estudante.EstudanteFilter;
 import com.unisinos.portal_vagas.domain.data.model.estudante.Estudante;
 
@@ -8,10 +9,11 @@ import java.util.Optional;
 
 public interface EstudanteRepository {
 
-    Estudante criarPerfilEstudante(Estudante estudante);
+    Estudante criar(Estudante estudante);
 
-    List<Estudante> listarEstudantePorFiltro(EstudanteFilter estudanteFilter);
+    EstudanteCandidatura criarCandidatura(Estudante estudante, EstudanteCandidatura candidatura);
 
+    List<Estudante> listarPorFiltro(EstudanteFilter estudanteFilter);
     Optional<Estudante> buscarPorId(String id);
 
     Estudante atualizar(String id, Estudante estudante);

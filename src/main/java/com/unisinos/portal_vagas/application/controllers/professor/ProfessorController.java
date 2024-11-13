@@ -21,13 +21,13 @@ public class ProfessorController {
     }
 
     @PostMapping
-    public ResponseEntity<Professor> criarPerfilProfessor(@RequestBody ProfessorRequest professorRequest) {
+    public ResponseEntity<Professor> criarProfessor(@RequestBody ProfessorRequest professorRequest) {
         Professor novoProfessor = professorService.criarProfessor(professorRequest);
         return new ResponseEntity<>(novoProfessor, HttpStatus.CREATED);
     }
 
     @GetMapping
-    public ResponseEntity<List<Professor>> listarProfessores(@RequestBody ProfessorRequestFilter professorRequestFilter) {
+    public ResponseEntity<List<Professor>> listarProfessores(ProfessorRequestFilter professorRequestFilter) {
         List<Professor> professores = professorService.listarProfessores(professorRequestFilter);
         return new ResponseEntity<>(professores, HttpStatus.OK);
     }
@@ -40,13 +40,13 @@ public class ProfessorController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Professor> atualizarPerfilProfessor(@PathVariable String id, @RequestBody ProfessorRequest professorRequest) {
+    public ResponseEntity<Professor> atualizarProfessor(@PathVariable String id, @RequestBody ProfessorRequest professorRequest) {
         Professor professorAtualizado = professorService.atualizarProfessor(id, professorRequest);
         return new ResponseEntity<>(professorAtualizado, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletarPerfilProfessor(@PathVariable String id) {
+    public ResponseEntity<Void> deletarProfessor(@PathVariable String id) {
         professorService.deletarProfessor(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

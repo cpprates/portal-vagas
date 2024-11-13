@@ -1,5 +1,6 @@
 package com.unisinos.portal_vagas.infrasctucture.data.model.document.estudante;
 
+import com.unisinos.portal_vagas.domain.data.model.estudante.EstudanteCandidatura;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -23,6 +24,7 @@ public class EstudanteDocument {
     private List<String> tecnologias;
     private String textoApresentacao;
     private String site;
+    private List<EstudanteCandidatura> candidaturas;
 
     public String getId() {
         return id;
@@ -94,5 +96,13 @@ public class EstudanteDocument {
 
     public void setSite(String site) {
         this.site = site;
+    }
+
+    public List<EstudanteCandidatura> getCandidaturas() {
+        return candidaturas;
+    }
+
+    public void setCandidaturas(List<EstudanteCandidatura> candidaturas) {
+        this.candidaturas = candidaturas;
     }
 }
