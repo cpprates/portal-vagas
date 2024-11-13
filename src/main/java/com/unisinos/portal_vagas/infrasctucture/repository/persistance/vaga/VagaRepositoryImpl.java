@@ -50,6 +50,9 @@ public class VagaRepositoryImpl implements VagaRepository {
         if (vagaFilter.getEmpresa() != null && !vagaFilter.getEmpresa().isEmpty()) {
             query.addCriteria(Criteria.where("empresa").regex(vagaFilter.getEmpresa(), "i"));
         }
+        if (vagaFilter.getIdProfessor() != null && !vagaFilter.getIdProfessor().isEmpty()) {
+            query.addCriteria(Criteria.where("idProfessor").regex(vagaFilter.getIdProfessor(), "i"));
+        }
 
         return mongoTemplate.find(query, VagaDocument.class).stream()
                 .map(vagaDocumentMapper::convertToVaga)

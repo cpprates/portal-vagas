@@ -5,6 +5,7 @@ public class VagaFilter {
     private String titulo;
     private String empresa;
     private String localizacao;
+    private String idProfessor;
 
     public String getTitulo() {
         return titulo;
@@ -28,5 +29,13 @@ public class VagaFilter {
 
     public void setLocalizacao(String localizacao) {
         this.localizacao = localizacao;
+    }
+
+    public String getIdProfessor() {
+        return idProfessor;
+    }
+
+    public void setIdProfessor(String idProfessor) {
+        this.idProfessor = idProfessor;
     }
 }

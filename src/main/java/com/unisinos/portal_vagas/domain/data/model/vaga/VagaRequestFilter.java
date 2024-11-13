@@ -13,6 +13,9 @@ public class VagaRequestFilter {
     @Schema(description = "Local de trabalho", example = "Porto Alegre")
     private String localizacao;
 
+    @Schema(description = "ID do professor que criou a vaga", example = "672bd81b46e76011a000c986")
+    private String idProfessor;
+
     public String getEmpresa() {
         return empresa;
     }
@@ -35,5 +38,13 @@ public class VagaRequestFilter {
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
+    }
+
+    public String getIdProfessor() {
+        return idProfessor;
+    }
+
+    public void setIdProfessor(String idProfessor) {
+        this.idProfessor = idProfessor;
     }
 }

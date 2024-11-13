@@ -3,7 +3,6 @@ package com.unisinos.portal_vagas.infrasctucture.repository.persistance.estudant
 import com.unisinos.portal_vagas.domain.data.model.estudante.EstudanteCandidatura;
 import com.unisinos.portal_vagas.domain.data.model.estudante.EstudanteFilter;
 import com.unisinos.portal_vagas.domain.data.model.estudante.Estudante;
-import com.unisinos.portal_vagas.domain.data.model.vaga.Vaga;
 import com.unisinos.portal_vagas.domain.repositories.estudante.EstudanteRepository;
 import com.unisinos.portal_vagas.infrasctucture.data.model.document.estudante.EstudanteDocument;
 import com.unisinos.portal_vagas.infrasctucture.data.mapper.estudante.EstudanteDocumentMapper;
@@ -12,7 +11,6 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
