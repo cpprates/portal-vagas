@@ -5,6 +5,7 @@ import com.unisinos.portal_vagas.domain.data.model.estudante.*;
 import com.unisinos.portal_vagas.domain.data.model.vaga.Vaga;
 import com.unisinos.portal_vagas.domain.exception.DataNotFoundException;
 import com.unisinos.portal_vagas.domain.repositories.estudante.EstudanteRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,18 +17,23 @@ public class EstudanteService {
     private EstudanteRepository estudanteRepository;
     private EstudanteMapper estudanteMapper;
     private VagaService vagaService;
+    private PasswordEncoder passwordEncoder;
 
     public EstudanteService(
             EstudanteRepository estudanteRepository,
             EstudanteMapper estudanteMapper,
-            VagaService vagaService) {
+            VagaService vagaService,
+            PasswordEncoder passwordEncoder) {
         this.estudanteRepository = estudanteRepository;
         this.estudanteMapper = estudanteMapper;
         this.vagaService = vagaService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public Estudante criarEstudante(EstudanteRequest estudanteRequest) {
         Estudante estudante = estudanteMapper.convertToEstudante(estudanteRequest);
+        estudante.setRole("ESTUDANTE");
+        estudante.setSenha(passwordEncoder.encode(estudante.getSenha()));
         return estudanteRepository.criar(estudante);
     }
 

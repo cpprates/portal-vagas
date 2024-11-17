@@ -1,5 +1,6 @@
 package com.unisinos.portal_vagas.domain.repositories.professor;
 
+import com.unisinos.portal_vagas.domain.data.model.estudante.Estudante;
 import com.unisinos.portal_vagas.domain.data.model.professor.ProfessorFilter;
 import com.unisinos.portal_vagas.domain.data.model.professor.Professor;
 
@@ -13,6 +14,8 @@ public interface ProfessorRepository {
     List<Professor> listarProfessorPorFiltro(ProfessorFilter professorFilter);
 
     Optional<Professor> buscarPorId(String id);
+
+    Optional<Professor> buscarPorEmail(String email);
 
     Professor atualizar(String id, Professor professor);
 

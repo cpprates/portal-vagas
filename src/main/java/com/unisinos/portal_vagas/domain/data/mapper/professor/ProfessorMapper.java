@@ -5,6 +5,7 @@ import com.unisinos.portal_vagas.domain.data.model.professor.ProfessorRequestFil
 import com.unisinos.portal_vagas.domain.data.model.professor.Professor;
 import com.unisinos.portal_vagas.domain.data.model.professor.ProfessorRequest;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)

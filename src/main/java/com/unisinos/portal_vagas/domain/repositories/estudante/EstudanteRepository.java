@@ -14,7 +14,10 @@ public interface EstudanteRepository {
     EstudanteCandidatura criarCandidatura(Estudante estudante, EstudanteCandidatura candidatura);
 
     List<Estudante> listarPorFiltro(EstudanteFilter estudanteFilter);
+
     Optional<Estudante> buscarPorId(String id);
+
+    Optional<Estudante> buscarPorEmail(String email);
 
     Estudante atualizar(String id, Estudante estudante);
 

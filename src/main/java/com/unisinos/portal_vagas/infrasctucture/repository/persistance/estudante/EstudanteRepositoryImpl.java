@@ -9,6 +9,7 @@ import com.unisinos.portal_vagas.infrasctucture.data.mapper.estudante.EstudanteD
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -79,6 +80,12 @@ public class EstudanteRepositoryImpl implements EstudanteRepository {
     @Override
     public Optional<Estudante> buscarPorId(String id) {
         Optional<EstudanteDocument> estudanteDocument = estudanteMongoRepository.findById(id);
+        return estudanteDocument.map(estudanteDocumentMapper::convertToEstudante);
+    }
+
+    @Override
+    public Optional<Estudante> buscarPorEmail(String email) {
+        Optional<EstudanteDocument> estudanteDocument = estudanteMongoRepository.findByEmail(email);
         return estudanteDocument.map(estudanteDocumentMapper::convertToEstudante);
     }
 

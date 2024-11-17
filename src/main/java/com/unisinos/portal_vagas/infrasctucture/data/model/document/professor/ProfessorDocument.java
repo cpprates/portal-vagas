@@ -1,40 +1,15 @@
 package com.unisinos.portal_vagas.infrasctucture.data.model.document.professor;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
+import com.unisinos.portal_vagas.infrasctucture.data.model.document.usuario.Usuario;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "professores")
-public class ProfessorDocument {
-
-    @Id
-    private String id;
-
-    private String nome;
-
-    @Indexed(unique = true)
-    private String email;
+public class ProfessorDocument extends Usuario {
 
     private String formacao;
     private String areaAtuacao;
     private String departamento;
     private boolean coordenador;
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
     public String getFormacao() {
         return formacao;
@@ -66,13 +41,5 @@ public class ProfessorDocument {
 
     public void setCoordenador(boolean coordenador) {
         this.coordenador = coordenador;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 }

@@ -1,46 +1,24 @@
 package com.unisinos.portal_vagas.infrasctucture.data.model.document.estudante;
 
 import com.unisinos.portal_vagas.domain.data.model.estudante.EstudanteCandidatura;
-import org.springframework.data.annotation.Id;
+import com.unisinos.portal_vagas.infrasctucture.data.model.document.usuario.Usuario;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
 @Document(collection = "estudantes")
-public class EstudanteDocument {
-
-    @Id
-    private String id;
-
-    private String nome;
+public class EstudanteDocument extends Usuario {
 
     @Indexed(unique = true)
     private String registroAcademico;
 
     private String curso;
-    private String email;
     private List<String> habilidades;
     private List<String> tecnologias;
     private String textoApresentacao;
     private String site;
     private List<EstudanteCandidatura> candidaturas;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
 
     public String getRegistroAcademico() {
         return registroAcademico;
@@ -56,14 +34,6 @@ public class EstudanteDocument {
 
     public void setCurso(String curso) {
         this.curso = curso;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public List<String> getHabilidades() {

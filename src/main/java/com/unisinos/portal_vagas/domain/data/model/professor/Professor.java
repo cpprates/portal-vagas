@@ -1,30 +1,13 @@
 package com.unisinos.portal_vagas.domain.data.model.professor;
 
-public class Professor {
+import com.unisinos.portal_vagas.domain.data.model.UsuarioModel;
 
-    private String id;
-    private String nome;
-    private String email;
+public class Professor extends UsuarioModel {
+
     private String formacao;
     private String areaAtuacao;
     private String departamento;
     private boolean coordenador;
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
     public String getFormacao() {
         return formacao;
@@ -56,13 +39,5 @@ public class Professor {
 
     public void setCoordenador(boolean coordenador) {
         this.coordenador = coordenador;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 }

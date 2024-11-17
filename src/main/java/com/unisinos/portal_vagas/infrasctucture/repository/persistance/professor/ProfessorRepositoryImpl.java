@@ -8,6 +8,7 @@ import com.unisinos.portal_vagas.infrasctucture.data.mapper.professor.ProfessorD
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -28,6 +29,7 @@ public class ProfessorRepositoryImpl implements ProfessorRepository {
         this.professorMongoRepository = professorMongoRepository;
         this.professorDocumentMapper = professorDocumentMapper;
         this.mongoTemplate = mongoTemplate;
+
     }
 
     @Override
@@ -65,6 +67,12 @@ public class ProfessorRepositoryImpl implements ProfessorRepository {
     @Override
     public Optional<Professor> buscarPorId(String id) {
         Optional<ProfessorDocument> professorDocument = professorMongoRepository.findById(id);
+        return professorDocument.map(professorDocumentMapper::convertToProfessor);
+    }
+
+    @Override
+    public Optional<Professor> buscarPorEmail(String email) {
+        Optional<ProfessorDocument> professorDocument = professorMongoRepository.findByEmail(email);
         return professorDocument.map(professorDocumentMapper::convertToProfessor);
     }
 

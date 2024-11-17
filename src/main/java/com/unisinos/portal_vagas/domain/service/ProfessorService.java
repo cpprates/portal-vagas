@@ -6,6 +6,7 @@ import com.unisinos.portal_vagas.domain.data.mapper.professor.ProfessorMapper;
 import com.unisinos.portal_vagas.domain.data.model.professor.Professor;
 import com.unisinos.portal_vagas.domain.data.model.professor.ProfessorRequest;
 import com.unisinos.portal_vagas.domain.repositories.professor.ProfessorRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,15 +17,19 @@ public class ProfessorService {
 
     private ProfessorRepository professorRepository;
     private ProfessorMapper professorMapper;
+    private PasswordEncoder passwordEncoder;
 
-    public ProfessorService(ProfessorRepository professorRepository, ProfessorMapper professorMapper) {
+    public ProfessorService(ProfessorRepository professorRepository, ProfessorMapper professorMapper, PasswordEncoder passwordEncoder) {
         this.professorRepository = professorRepository;
         this.professorMapper = professorMapper;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public Professor criarProfessor(ProfessorRequest professorRequest) {
-          Professor professor = professorMapper.convertToProfessor(professorRequest);
-          return professorRepository.criarPerfil(professor);
+        Professor professor = professorMapper.convertToProfessor(professorRequest);
+        professor.setRole(professor.isCoordenador() ? "ADMIN" : "PROFESSOR");
+        professor.setSenha(passwordEncoder.encode(professor.getSenha()));
+        return professorRepository.criarPerfil(professor);
     }
 
     public List<Professor> listarProfessores(ProfessorRequestFilter professorRequestFilter) {

@@ -29,6 +29,9 @@ public class ProfessorRequest {
     @NotBlank
     private boolean coordenador;
 
+    @NotBlank
+    private String senha;
+
     public String getNome() {
         return nome;
     }
@@ -75,5 +78,13 @@ public class ProfessorRequest {
 
     public void setCoordenador(boolean coordenador) {
         this.coordenador = coordenador;
+    }
+
+    public @NotBlank String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(@NotBlank String senha) {
+        this.senha = senha;
     }
 }

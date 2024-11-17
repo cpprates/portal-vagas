@@ -39,6 +39,9 @@ public class EstudanteRequest {
     @NotBlank
     private String site;
 
+    @NotBlank
+    private String senha;
+
     public String getNome() {
         return nome;
     }
@@ -101,5 +104,13 @@ public class EstudanteRequest {
 
     public void setSite(String site) {
         this.site = site;
+    }
+
+    public @NotBlank String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(@NotBlank String senha) {
+        this.senha = senha;
     }
 }
