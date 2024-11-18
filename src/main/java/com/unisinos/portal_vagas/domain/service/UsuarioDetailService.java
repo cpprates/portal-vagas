@@ -1,10 +1,9 @@
-package com.unisinos.portal_vagas.application.config;
+package com.unisinos.portal_vagas.domain.service;
 
 import com.unisinos.portal_vagas.domain.data.model.estudante.Estudante;
 import com.unisinos.portal_vagas.domain.data.model.professor.Professor;
 import com.unisinos.portal_vagas.domain.repositories.estudante.EstudanteRepository;
 import com.unisinos.portal_vagas.domain.repositories.professor.ProfessorRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -19,7 +18,6 @@ public class UsuarioDetailService implements UserDetailsService {
     private final EstudanteRepository estudanteRepository;
     private final ProfessorRepository professorRepository;
 
-    @Autowired
     public UsuarioDetailService(EstudanteRepository estudanteRepository, ProfessorRepository professorRepository) {
         this.estudanteRepository = estudanteRepository;
         this.professorRepository = professorRepository;

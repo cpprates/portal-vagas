@@ -1,4 +1,4 @@
-package com.unisinos.portal_vagas.domain.data.model;
+package com.unisinos.portal_vagas.domain.data.model.login;
 
 public class UsuarioModel {
 

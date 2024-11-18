@@ -1,4 +1,4 @@
-package com.unisinos.portal_vagas.application.config;
+package com.unisinos.portal_vagas.domain.service.authentication;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -15,7 +15,7 @@ public class AuthenticationSuccessHandler extends SavedRequestAwareAuthenticatio
         boolean isAdmin = authentication.getAuthorities().stream()
                 .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_ADMIN"));
         if (isAdmin) {
-            setDefaultTargetUrl("/swagger-ui/index.html#/**");
+            setDefaultTargetUrl("/swagger-ui/index.html#/");
         }
 
         boolean isProfessor = authentication.getAuthorities().stream()

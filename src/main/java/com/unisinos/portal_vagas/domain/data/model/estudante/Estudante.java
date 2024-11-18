@@ -1,6 +1,6 @@
 package com.unisinos.portal_vagas.domain.data.model.estudante;
 
-import com.unisinos.portal_vagas.domain.data.model.UsuarioModel;
+import com.unisinos.portal_vagas.domain.data.model.login.UsuarioModel;
 
 import java.util.List;
 
