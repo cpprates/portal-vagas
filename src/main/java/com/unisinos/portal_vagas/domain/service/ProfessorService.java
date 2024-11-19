@@ -2,6 +2,7 @@ package com.unisinos.portal_vagas.domain.service;
 
 import com.unisinos.portal_vagas.domain.data.mapper.professor.ProfessorMapper;
 import com.unisinos.portal_vagas.domain.data.model.professor.*;
+import com.unisinos.portal_vagas.domain.exception.DataNotFoundException;
 import com.unisinos.portal_vagas.domain.repositories.professor.ProfessorRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -38,7 +39,8 @@ public class ProfessorService {
     }
 
     public Optional<ProfessorResponse> buscarProfessorPorId(String id) {
-        return professorRepository.buscarPorId(id).map(professorMapper::convertToProfessorResponse);
+        return Optional.ofNullable(professorRepository.buscarPorId(id).map(professorMapper::convertToProfessorResponse)
+                .orElseThrow(() -> new DataNotFoundException("Professor não encontrado")));
     }
 
     public ProfessorResponse atualizarProfessor(String id, ProfessorRequest professorRequest) {

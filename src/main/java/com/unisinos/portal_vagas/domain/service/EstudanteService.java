@@ -53,7 +53,9 @@ public class EstudanteService {
     }
 
     public Optional<EstudanteResponse> buscarEstudantePorId(String id) {
-        return estudanteRepository.buscarPorId(id).map(estudanteMapper::convertToEstudanteResponse);
+        return Optional.ofNullable(estudanteRepository.buscarPorId(id)
+                .map(estudanteMapper::convertToEstudanteResponse)
+                .orElseThrow(() -> new DataNotFoundException("Estudante não encontrado")));
     }
 
     public EstudanteResponse atualizarEstudante(String id, EstudanteRequest estudanteRequest) {

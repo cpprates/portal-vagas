@@ -37,7 +37,8 @@ public class VagaService {
     }
 
     public Optional<Vaga> buscarVagaPorId(String id) {
-        return vagaRepository.buscarPorId(id);
+        return Optional.ofNullable(vagaRepository.buscarPorId(id)
+                .orElseThrow(() -> new DataNotFoundException("Vaga não encontrada")));
     }
 
     public Vaga atualizarVaga(String id, String idProfessor, VagaRequest vagaRequest) {

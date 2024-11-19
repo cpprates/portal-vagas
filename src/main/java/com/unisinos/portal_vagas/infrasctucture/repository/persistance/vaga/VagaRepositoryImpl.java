@@ -2,6 +2,7 @@ package com.unisinos.portal_vagas.infrasctucture.repository.persistance.vaga;
 
 import com.unisinos.portal_vagas.domain.data.model.vaga.Vaga;
 import com.unisinos.portal_vagas.domain.data.model.vaga.VagaFilter;
+import com.unisinos.portal_vagas.domain.exception.ConflictException;
 import com.unisinos.portal_vagas.domain.exception.DataNotFoundException;
 import com.unisinos.portal_vagas.domain.repositories.vaga.VagaRepository;
 import com.unisinos.portal_vagas.infrasctucture.data.mapper.vaga.VagaDocumentMapper;
@@ -83,8 +84,8 @@ public class VagaRepositoryImpl implements VagaRepository {
 
     private void validarProfessorEVaga(String id, String idProfessor) {
         if (vagaMongoRepository.findByIdAndIdProfessor(id, idProfessor) == null) {
-            throw new DataNotFoundException(String
-                    .format("Professor com id [%s] não pode alterar vaga com id [%s]", idProfessor, id));
+            throw new ConflictException(String.format(
+                    "Professor com id [%s] não pode alterar vaga com id [%s]", idProfessor, id));
         }
     }
 }
