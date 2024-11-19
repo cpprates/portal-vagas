@@ -2,7 +2,10 @@ package com.unisinos.portal_vagas.domain.data.mapper.estudante;
 
 import com.unisinos.portal_vagas.domain.data.model.estudante.*;
 import com.unisinos.portal_vagas.domain.data.model.vaga.Vaga;
-import org.mapstruct.*;
+import org.mapstruct.AfterMapping;
+import org.mapstruct.Mapper;
+import org.mapstruct.MappingTarget;
+import org.mapstruct.ReportingPolicy;
 
 import java.time.LocalDateTime;
 
@@ -19,4 +22,6 @@ public interface EstudanteMapper {
     }
 
     EstudanteFilter convertToEstudanteFilter(EstudanteRequestFilter estudanteRequestFilter);
+
+    EstudanteResponse convertToEstudanteResponse(Estudante estudante);
 }

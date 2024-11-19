@@ -1,10 +1,11 @@
 package com.unisinos.portal_vagas.infrasctucture.repository.persistance.vaga;
 
-import com.unisinos.portal_vagas.domain.data.model.vaga.VagaFilter;
 import com.unisinos.portal_vagas.domain.data.model.vaga.Vaga;
+import com.unisinos.portal_vagas.domain.data.model.vaga.VagaFilter;
+import com.unisinos.portal_vagas.domain.exception.DataNotFoundException;
 import com.unisinos.portal_vagas.domain.repositories.vaga.VagaRepository;
-import com.unisinos.portal_vagas.infrasctucture.data.model.document.vaga.VagaDocument;
 import com.unisinos.portal_vagas.infrasctucture.data.mapper.vaga.VagaDocumentMapper;
+import com.unisinos.portal_vagas.infrasctucture.data.model.document.vaga.VagaDocument;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -66,7 +67,8 @@ public class VagaRepositoryImpl implements VagaRepository {
     }
 
     @Override
-    public Vaga atualizar(String id, Vaga vaga) {
+    public Vaga atualizar(String id, String idProfessor, Vaga vaga) {
+        validarProfessorEVaga(id, idProfessor);
         VagaDocument document = vagaDocumentMapper.convertToVagaDocument(vaga);
         document.setId(id);
         VagaDocument documentSaved = vagaMongoRepository.save(document);
@@ -74,7 +76,15 @@ public class VagaRepositoryImpl implements VagaRepository {
     }
 
     @Override
-    public void deletar(String id) {
+    public void deletar(String id, String idProfessor) {
+        validarProfessorEVaga(id, idProfessor);
         vagaMongoRepository.deleteById(id);
+    }
+
+    private void validarProfessorEVaga(String id, String idProfessor) {
+        if (vagaMongoRepository.findByIdAndIdProfessor(id, idProfessor) == null) {
+            throw new DataNotFoundException(String
+                    .format("Professor com id [%s] não pode alterar vaga com id [%s]", idProfessor, id));
+        }
     }
 }

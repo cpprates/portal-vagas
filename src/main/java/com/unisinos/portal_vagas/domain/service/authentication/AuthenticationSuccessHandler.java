@@ -21,7 +21,7 @@ public class AuthenticationSuccessHandler extends SavedRequestAwareAuthenticatio
         boolean isProfessor = authentication.getAuthorities().stream()
                 .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_PROFESSOR"));
         if (isProfessor) {
-            setDefaultTargetUrl("/swagger-ui/index.html#/professor-controller");
+            setDefaultTargetUrl("/swagger-ui/index.html#/vaga-controller");
         }
 
         boolean isEstudante = authentication.getAuthorities().stream()

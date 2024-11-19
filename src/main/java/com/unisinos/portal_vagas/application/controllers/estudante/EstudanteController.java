@@ -1,9 +1,9 @@
 package com.unisinos.portal_vagas.application.controllers.estudante;
 
 import com.unisinos.portal_vagas.domain.data.model.estudante.EstudanteCandidatura;
-import com.unisinos.portal_vagas.domain.data.model.estudante.EstudanteRequestFilter;
-import com.unisinos.portal_vagas.domain.data.model.estudante.Estudante;
 import com.unisinos.portal_vagas.domain.data.model.estudante.EstudanteRequest;
+import com.unisinos.portal_vagas.domain.data.model.estudante.EstudanteRequestFilter;
+import com.unisinos.portal_vagas.domain.data.model.estudante.EstudanteResponse;
 import com.unisinos.portal_vagas.domain.service.EstudanteService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,27 +22,27 @@ public class EstudanteController {
     }
 
     @PostMapping
-    public ResponseEntity<Estudante> criarEstudante(@RequestBody EstudanteRequest estudanteRequest) {
-        Estudante novoEstudante = estudanteService.criarEstudante(estudanteRequest);
+    public ResponseEntity<EstudanteResponse> criarEstudante(@RequestBody EstudanteRequest estudanteRequest) {
+        EstudanteResponse novoEstudante = estudanteService.criarEstudante(estudanteRequest);
         return new ResponseEntity<>(novoEstudante, HttpStatus.CREATED);
     }
 
     @GetMapping
-    public ResponseEntity<List<Estudante>> listarEstudantes(EstudanteRequestFilter estudanteRequestFilter) {
-        List<Estudante> estudantes = estudanteService.listarEstudantes(estudanteRequestFilter);
+    public ResponseEntity<List<EstudanteResponse>> listarEstudantes(EstudanteRequestFilter estudanteRequestFilter) {
+        List<EstudanteResponse> estudantes = estudanteService.listarEstudantes(estudanteRequestFilter);
         return new ResponseEntity<>(estudantes, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Estudante> buscarEstudantePorId(@PathVariable String id) {
+    public ResponseEntity<EstudanteResponse> buscarEstudantePorId(@PathVariable String id) {
         return estudanteService.buscarEstudantePorId(id)
                 .map(estudante -> new ResponseEntity<>(estudante, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Estudante> atualizarEstudante(@PathVariable String id, @RequestBody EstudanteRequest estudanteRequest) {
-        Estudante estudanteAtualizado = estudanteService.atualizarEstudante(id, estudanteRequest);
+    public ResponseEntity<EstudanteResponse> atualizarEstudante(@PathVariable String id, @RequestBody EstudanteRequest estudanteRequest) {
+        EstudanteResponse estudanteAtualizado = estudanteService.atualizarEstudante(id, estudanteRequest);
         return new ResponseEntity<>(estudanteAtualizado, HttpStatus.OK);
     }
 

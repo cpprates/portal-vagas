@@ -37,9 +37,11 @@ public class SecurityConfig {
                     registry.requestMatchers(HttpMethod.GET, "portal-vagas/vagas/**").permitAll();
                     registry.requestMatchers(HttpMethod.POST,
                             "portal-vagas/estudantes/v1/estudantes",
-                            "portal-vagas/professores/v1/professores").permitAll();
-                    registry.requestMatchers("portal-vagas/authenticate").permitAll();
-                    registry.requestMatchers("portal-vagas/professores/**").hasRole("PROFESSOR");
+                            "portal-vagas/professores/v1/professores",
+                            "portal-vagas/authenticate").permitAll();
+                    registry.requestMatchers(
+                            "portal-vagas/professores/**",
+                            "portal-vagas/vagas/**").hasRole("PROFESSOR");
                     registry.requestMatchers("portal-vagas/estudantes/**").hasRole("ESTUDANTE");
                     registry.requestMatchers("portal-vagas/**").hasRole("ADMIN");
                     registry.anyRequest().authenticated();

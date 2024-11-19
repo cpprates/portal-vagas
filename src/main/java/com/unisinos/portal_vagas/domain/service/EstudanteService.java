@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class EstudanteService {
@@ -30,11 +31,11 @@ public class EstudanteService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public Estudante criarEstudante(EstudanteRequest estudanteRequest) {
+    public EstudanteResponse criarEstudante(EstudanteRequest estudanteRequest) {
         Estudante estudante = estudanteMapper.convertToEstudante(estudanteRequest);
         estudante.setRole("ESTUDANTE");
         estudante.setSenha(passwordEncoder.encode(estudante.getSenha()));
-        return estudanteRepository.criar(estudante);
+        return estudanteMapper.convertToEstudanteResponse(estudanteRepository.criar(estudante));
     }
 
     public EstudanteCandidatura criarCandidatura(String id, String idVaga) {
@@ -44,18 +45,20 @@ public class EstudanteService {
         return estudanteRepository.criarCandidatura(estudante, candidatura);
     }
 
-    public List<Estudante> listarEstudantes(EstudanteRequestFilter estudanteRequestFilter) {
+    public List<EstudanteResponse> listarEstudantes(EstudanteRequestFilter estudanteRequestFilter) {
         EstudanteFilter estudanteFilter = estudanteMapper.convertToEstudanteFilter(estudanteRequestFilter);
-        return estudanteRepository.listarPorFiltro(estudanteFilter);
+        return estudanteRepository.listarPorFiltro(estudanteFilter)
+                .stream().map(estudanteMapper::convertToEstudanteResponse)
+                .collect(Collectors.toList());
     }
 
-    public Optional<Estudante> buscarEstudantePorId(String id) {
-        return estudanteRepository.buscarPorId(id);
+    public Optional<EstudanteResponse> buscarEstudantePorId(String id) {
+        return estudanteRepository.buscarPorId(id).map(estudanteMapper::convertToEstudanteResponse);
     }
 
-    public Estudante atualizarEstudante(String id, EstudanteRequest estudanteRequest) {
+    public EstudanteResponse atualizarEstudante(String id, EstudanteRequest estudanteRequest) {
         Estudante estudante = estudanteMapper.convertToEstudante(estudanteRequest);
-        return estudanteRepository.atualizar(id, estudante);
+        return estudanteMapper.convertToEstudanteResponse(estudanteRepository.atualizar(id, estudante));
     }
 
     public void deletarEstudante(String id) {
@@ -63,9 +66,9 @@ public class EstudanteService {
     }
 
     private Estudante validarEstudante(String id) {
-        Optional<Estudante> estudante = buscarEstudantePorId(id);
+        Optional<Estudante> estudante = estudanteRepository.buscarPorId(id);
         if (estudante.isEmpty()) {
-            throw new DataNotFoundException(String.format("Estudante com id [{id}] não encontrado", id));
+            throw new DataNotFoundException(String.format("Estudante com id [%s] não encontrado", id));
         }
         return estudante.get();
     }
@@ -73,7 +76,7 @@ public class EstudanteService {
     private Vaga validarVaga(String id) {
         Optional<Vaga> vaga = vagaService.buscarVagaPorId(id);
         if (vaga.isEmpty()) {
-            throw new DataNotFoundException(String.format("Vaga com id [{id}] não encontrada", id));
+            throw new DataNotFoundException(String.format("Vaga com id [%s] não encontrada", id));
         }
         return vaga.get();
     }

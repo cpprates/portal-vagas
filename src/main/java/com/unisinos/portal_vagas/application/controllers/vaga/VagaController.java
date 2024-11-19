@@ -20,8 +20,8 @@ public class VagaController {
         this.vagaService = vagaService;
     }
 
-    @PostMapping
-    public ResponseEntity<Vaga> criarVaga(@RequestHeader String idProfessor, @RequestBody VagaRequest vagaRequest) {
+    @PostMapping("/{idProfessor}")
+    public ResponseEntity<Vaga> criarVaga(@PathVariable String idProfessor, @RequestBody VagaRequest vagaRequest) {
         Vaga novaVaga = vagaService.criarVaga(idProfessor, vagaRequest);
         return new ResponseEntity<>(novaVaga, HttpStatus.CREATED);
     }
@@ -39,15 +39,15 @@ public class VagaController {
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Vaga> atualizarVaga(@PathVariable String id, @RequestBody VagaRequest vagaRequest) {
-        Vaga vagaAtualizada = vagaService.atualizarVaga(id, vagaRequest);
+    @PutMapping("/{id}/professor/{idProfessor}")
+    public ResponseEntity<Vaga> atualizarVaga(@PathVariable String id, @PathVariable String idProfessor, @RequestBody VagaRequest vagaRequest) {
+        Vaga vagaAtualizada = vagaService.atualizarVaga(id, idProfessor, vagaRequest);
         return new ResponseEntity<>(vagaAtualizada, HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletarVaga(@PathVariable String id) {
-        vagaService.deletarVaga(id);
+    @DeleteMapping("/{id}/professor/{idProfessor}")
+    public ResponseEntity<Void> deletarVaga(@PathVariable String id, @PathVariable String idProfessor) {
+        vagaService.deletarVaga(id, idProfessor);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

@@ -1,8 +1,8 @@
 package com.unisinos.portal_vagas.application.controllers.professor;
 
-import com.unisinos.portal_vagas.domain.data.model.professor.ProfessorRequestFilter;
-import com.unisinos.portal_vagas.domain.data.model.professor.Professor;
 import com.unisinos.portal_vagas.domain.data.model.professor.ProfessorRequest;
+import com.unisinos.portal_vagas.domain.data.model.professor.ProfessorRequestFilter;
+import com.unisinos.portal_vagas.domain.data.model.professor.ProfessorResponse;
 import com.unisinos.portal_vagas.domain.service.ProfessorService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,27 +21,27 @@ public class ProfessorController {
     }
 
     @PostMapping
-    public ResponseEntity<Professor> criarProfessor(@RequestBody ProfessorRequest professorRequest) {
-        Professor novoProfessor = professorService.criarProfessor(professorRequest);
+    public ResponseEntity<ProfessorResponse> criarProfessor(@RequestBody ProfessorRequest professorRequest) {
+        ProfessorResponse novoProfessor = professorService.criarProfessor(professorRequest);
         return new ResponseEntity<>(novoProfessor, HttpStatus.CREATED);
     }
 
     @GetMapping
-    public ResponseEntity<List<Professor>> listarProfessores(ProfessorRequestFilter professorRequestFilter) {
-        List<Professor> professores = professorService.listarProfessores(professorRequestFilter);
+    public ResponseEntity<List<ProfessorResponse>> listarProfessores(ProfessorRequestFilter professorRequestFilter) {
+        List<ProfessorResponse> professores = professorService.listarProfessores(professorRequestFilter);
         return new ResponseEntity<>(professores, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Professor> buscarProfessorPorId(@PathVariable String id) {
+    public ResponseEntity<ProfessorResponse> buscarProfessorPorId(@PathVariable String id) {
         return professorService.buscarProfessorPorId(id)
                 .map(professor -> new ResponseEntity<>(professor, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Professor> atualizarProfessor(@PathVariable String id, @RequestBody ProfessorRequest professorRequest) {
-        Professor professorAtualizado = professorService.atualizarProfessor(id, professorRequest);
+    public ResponseEntity<ProfessorResponse> atualizarProfessor(@PathVariable String id, @RequestBody ProfessorRequest professorRequest) {
+        ProfessorResponse professorAtualizado = professorService.atualizarProfessor(id, professorRequest);
         return new ResponseEntity<>(professorAtualizado, HttpStatus.OK);
     }
 

@@ -1,11 +1,12 @@
 package com.unisinos.portal_vagas.domain.data.model.estudante;
 
-import com.unisinos.portal_vagas.domain.data.model.usuario.UsuarioModel;
-
 import java.util.List;
 
-public class Estudante extends UsuarioModel {
+public class EstudanteResponse {
 
+    private String id;
+    private String nome;
+    private String email;
     private String registroAcademico;
     private String curso;
     private List<String> habilidades;
@@ -13,6 +14,30 @@ public class Estudante extends UsuarioModel {
     private String textoApresentacao;
     private String site;
     private List<EstudanteCandidatura> candidaturas;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public String getRegistroAcademico() {
         return registroAcademico;

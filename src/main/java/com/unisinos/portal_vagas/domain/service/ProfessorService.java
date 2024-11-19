@@ -1,16 +1,14 @@
 package com.unisinos.portal_vagas.domain.service;
 
-import com.unisinos.portal_vagas.domain.data.model.professor.ProfessorFilter;
-import com.unisinos.portal_vagas.domain.data.model.professor.ProfessorRequestFilter;
 import com.unisinos.portal_vagas.domain.data.mapper.professor.ProfessorMapper;
-import com.unisinos.portal_vagas.domain.data.model.professor.Professor;
-import com.unisinos.portal_vagas.domain.data.model.professor.ProfessorRequest;
+import com.unisinos.portal_vagas.domain.data.model.professor.*;
 import com.unisinos.portal_vagas.domain.repositories.professor.ProfessorRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ProfessorService {
@@ -25,25 +23,27 @@ public class ProfessorService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public Professor criarProfessor(ProfessorRequest professorRequest) {
+    public ProfessorResponse criarProfessor(ProfessorRequest professorRequest) {
         Professor professor = professorMapper.convertToProfessor(professorRequest);
         professor.setRole(professor.isCoordenador() ? "ADMIN" : "PROFESSOR");
         professor.setSenha(passwordEncoder.encode(professor.getSenha()));
-        return professorRepository.criarPerfil(professor);
+        return professorMapper.convertToProfessorResponse(professorRepository.criarPerfil(professor));
     }
 
-    public List<Professor> listarProfessores(ProfessorRequestFilter professorRequestFilter) {
+    public List<ProfessorResponse> listarProfessores(ProfessorRequestFilter professorRequestFilter) {
         ProfessorFilter professorFilter = professorMapper.convertToProfessorFilter(professorRequestFilter);
-        return professorRepository.listarProfessorPorFiltro(professorFilter);
+        return professorRepository.listarProfessorPorFiltro(professorFilter)
+                .stream().map(professorMapper::convertToProfessorResponse)
+                .collect(Collectors.toList());
     }
 
-    public Optional<Professor> buscarProfessorPorId(String id) {
-        return professorRepository.buscarPorId(id);
+    public Optional<ProfessorResponse> buscarProfessorPorId(String id) {
+        return professorRepository.buscarPorId(id).map(professorMapper::convertToProfessorResponse);
     }
 
-    public Professor atualizarProfessor(String id, ProfessorRequest professorRequest) {
+    public ProfessorResponse atualizarProfessor(String id, ProfessorRequest professorRequest) {
         Professor professor = professorMapper.convertToProfessor(professorRequest);
-        return professorRepository.atualizar(id, professor);
+        return professorMapper.convertToProfessorResponse(professorRepository.atualizar(id, professor));
     }
 
     public void deletarProfessor(String id) {

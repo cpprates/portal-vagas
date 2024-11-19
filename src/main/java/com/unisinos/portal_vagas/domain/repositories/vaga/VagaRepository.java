@@ -13,7 +13,7 @@ public interface VagaRepository {
 
     Optional<Vaga> buscarPorId(String id);
 
-    Vaga atualizar(String id, Vaga vaga);
+    Vaga atualizar(String id, String idProfessor, Vaga vaga);
 
-    void deletar(String id);
+    void deletar(String id, String idProfessor);
 }
