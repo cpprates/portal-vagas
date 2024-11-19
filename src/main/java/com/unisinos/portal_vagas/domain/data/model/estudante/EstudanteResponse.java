@@ -1,18 +1,38 @@
 package com.unisinos.portal_vagas.domain.data.model.estudante;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import java.util.List;
 
 public class EstudanteResponse {
 
     private String id;
+
+    @Schema(description = "Nome do estudante", example = "Maria Flor")
     private String nome;
+
+    @Schema(description = "E-mail do estudante", example = "mariaflor@edu.unisinos.br")
     private String email;
+
+    @Schema(description = "Registro Acadêmico (RA)", example = "12346532")
     private String registroAcademico;
+
+    @Schema(description = "Nome do curso", example = "Ciência da Computação")
     private String curso;
+
+    @Schema(description = "Lista de habilidades profissionais", example = "[\"proatividade\", \"vontade de aprender\"]")
     private List<String> habilidades;
+
+    @Schema(description = "Tecnologias que possui conhecimento", example = "[\"Java\", \"SpringBoot\", \"MongoDB\"]")
     private List<String> tecnologias;
+
+    @Schema(description = "Pequena apresentação pessoal", example = "Em busca de estágio focado em backend")
     private String textoApresentacao;
+
+    @Schema(description = "Site de um perfil profissional", example = "https://linkedin.com/in/mariaflor/")
     private String site;
+
+    @Schema(description = "Lista de candidaturas")
     private List<EstudanteCandidatura> candidaturas;
 
     public String getId() {

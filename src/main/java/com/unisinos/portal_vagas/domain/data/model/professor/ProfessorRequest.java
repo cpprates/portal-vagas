@@ -13,7 +13,7 @@ public class ProfessorRequest {
     @NotBlank
     private String email;
 
-    @Schema(description = "Curso de formacão", example = "Ciência da Computacão - PhD")
+    @Schema(description = "Curso de formação", example = "Ciência da Computação - PhD")
     @NotBlank
     private String formacao;
 
