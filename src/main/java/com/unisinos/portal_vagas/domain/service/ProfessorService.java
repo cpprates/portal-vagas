@@ -45,6 +45,7 @@ public class ProfessorService {
 
     public ProfessorResponse atualizarProfessor(String id, ProfessorRequest professorRequest) {
         Professor professor = professorMapper.convertToProfessor(professorRequest);
+        professor.setRole(professor.isCoordenador() ? "ADMIN" : "PROFESSOR");
         return professorMapper.convertToProfessorResponse(professorRepository.atualizar(id, professor));
     }
 
