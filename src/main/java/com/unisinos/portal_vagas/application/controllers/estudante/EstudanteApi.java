@@ -47,8 +47,8 @@ public interface EstudanteApi {
                                     array = @ArraySchema(schema = @Schema(implementation = EstudanteResponse[].class))
                             )),
                     @ApiResponse(
-                            responseCode = "401",
-                            description = "Unauthorized",
+                            responseCode = "403",
+                            description = "Forbidden",
                             content = @Content)
             })
     ResponseEntity<List<EstudanteResponse>> listarEstudantes(
@@ -65,8 +65,8 @@ public interface EstudanteApi {
                                     schema = @Schema(implementation = EstudanteResponse.class)
                             )),
                     @ApiResponse(
-                            responseCode = "401",
-                            description = "Unauthorized",
+                            responseCode = "403",
+                            description = "Forbidden",
                             content = @Content),
                     @ApiResponse(
                             responseCode = "404",
@@ -93,8 +93,8 @@ public interface EstudanteApi {
                                     schema = @Schema(implementation = EstudanteResponse.class)
                             )),
                     @ApiResponse(
-                            responseCode = "401",
-                            description = "Unauthorized",
+                            responseCode = "403",
+                            description = "Forbidden",
                             content = @Content),
                     @ApiResponse(
                             responseCode = "404",
@@ -121,8 +121,8 @@ public interface EstudanteApi {
                             description = "No Content",
                             content = @Content),
                     @ApiResponse(
-                            responseCode = "401",
-                            description = "Unauthorized",
+                            responseCode = "403",
+                            description = "Forbidden",
                             content = @Content)
             })
     ResponseEntity<Void> deletarEstudante(
@@ -138,8 +138,8 @@ public interface EstudanteApi {
                                     schema = @Schema(implementation = EstudanteCandidatura.class)
                             )),
                     @ApiResponse(
-                            responseCode = "401",
-                            description = "Unauthorized",
+                            responseCode = "403",
+                            description = "Forbidden",
                             content = @Content),
                     @ApiResponse(
                             responseCode = "404",
@@ -165,8 +165,8 @@ public interface EstudanteApi {
                             description = "No Content",
                             content = @Content),
                     @ApiResponse(
-                            responseCode = "401",
-                            description = "Unauthorized",
+                            responseCode = "403",
+                            description = "Forbidden",
                             content = @Content),
                     @ApiResponse(
                             responseCode = "404",

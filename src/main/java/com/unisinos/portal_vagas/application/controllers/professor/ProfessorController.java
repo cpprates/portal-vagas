@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("portal-vagas/professores/v1/professores")
-public class ProfessorController {
+public class ProfessorController implements ProfessorApi {
 
     private ProfessorService professorService;
 

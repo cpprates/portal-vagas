@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("portal-vagas/vagas/v1/vagas")
-public class VagaController {
+public class VagaController implements VagaApi {
 
     private VagaService vagaService;
 
