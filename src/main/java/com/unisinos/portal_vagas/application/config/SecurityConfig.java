@@ -42,7 +42,7 @@ public class SecurityConfig {
                     registry.requestMatchers(
                             "portal-vagas/professores/**",
                             "portal-vagas/vagas/**").hasRole("PROFESSOR");
-                    registry.requestMatchers("portal-vagas/estudantes/**").hasRole("ESTUDANTE");
+                    registry.requestMatchers("portal-vagas/estudantes/v1/estudantes/{id}/**").hasRole("ESTUDANTE");
                     registry.requestMatchers("portal-vagas/**").hasRole("ADMIN");
                     registry.anyRequest().authenticated();
                 }).formLogin(httpSecurityFormLoginConfigurer -> {

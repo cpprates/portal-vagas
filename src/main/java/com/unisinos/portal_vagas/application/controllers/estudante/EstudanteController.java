@@ -57,4 +57,10 @@ public class EstudanteController implements EstudanteApi {
         EstudanteCandidatura novaCandidatura = estudanteService.criarCandidatura(id, idVaga);
         return new ResponseEntity<>(novaCandidatura, HttpStatus.CREATED);
     }
+
+    @DeleteMapping("/{id}/candidatura/{idVaga}")
+    public ResponseEntity<Void> deletarCandidatura(@PathVariable String id, @PathVariable String idVaga) {
+        estudanteService.deletarCandidatura(id, idVaga);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }

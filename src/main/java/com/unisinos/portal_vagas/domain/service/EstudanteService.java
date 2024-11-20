@@ -3,6 +3,7 @@ package com.unisinos.portal_vagas.domain.service;
 import com.unisinos.portal_vagas.domain.data.mapper.estudante.EstudanteMapper;
 import com.unisinos.portal_vagas.domain.data.model.estudante.*;
 import com.unisinos.portal_vagas.domain.data.model.vaga.Vaga;
+import com.unisinos.portal_vagas.domain.exception.ConflictException;
 import com.unisinos.portal_vagas.domain.exception.DataNotFoundException;
 import com.unisinos.portal_vagas.domain.repositories.estudante.EstudanteRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -45,6 +46,11 @@ public class EstudanteService {
         return estudanteRepository.criarCandidatura(estudante, candidatura);
     }
 
+    public void deletarCandidatura(String id, String idVaga) {
+        Estudante estudante = validarEstudante(id);
+        deletarCandidaturaHandler(id, idVaga, estudante);
+    }
+
     public List<EstudanteResponse> listarEstudantes(EstudanteRequestFilter estudanteRequestFilter) {
         EstudanteFilter estudanteFilter = estudanteMapper.convertToEstudanteFilter(estudanteRequestFilter);
         return estudanteRepository.listarPorFiltro(estudanteFilter)
@@ -81,5 +87,21 @@ public class EstudanteService {
             throw new DataNotFoundException(String.format("Vaga com id [%s] não encontrada", id));
         }
         return vaga.get();
+    }
+
+    private void deletarCandidaturaHandler(String id, String idVaga, Estudante estudante) {
+        if (estudante.getCandidaturas() != null && !estudante.getCandidaturas().isEmpty()) {
+            boolean removido = estudante.getCandidaturas().removeIf(candidatura1 ->
+                    candidatura1.getVaga() != null && idVaga.equals(candidatura1.getVaga().getId())
+            );
+            if (removido) {
+                estudanteRepository.atualizar(id, estudante);
+            } else {
+                throw new DataNotFoundException(
+                        String.format("Candidatura com idVaga [%s] não encontrada para o estudante", idVaga));
+            }
+        } else {
+            throw new ConflictException("O estudante não possui candidaturas");
+        }
     }
 }

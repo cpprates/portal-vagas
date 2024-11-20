@@ -157,4 +157,41 @@ public interface EstudanteApi {
     ResponseEntity<EstudanteCandidatura> criarCandidatura(
             @Parameter(in = PATH, required = true, description = "Id do estudante") String id,
             @Parameter(in = PATH, required = true, description = "Id da vaga") String idVaga);
+
+    @Operation(summary = "Operação para deletar candidatura de estudante",
+            responses = {
+                    @ApiResponse(
+                            responseCode = "204",
+                            description = "No Content",
+                            content = @Content),
+                    @ApiResponse(
+                            responseCode = "401",
+                            description = "Unauthorized",
+                            content = @Content),
+                    @ApiResponse(
+                            responseCode = "404",
+                            description = "Not Found",
+                            content = @Content(
+                                    mediaType = MediaType.APPLICATION_JSON_VALUE,
+                                    examples = {
+                                            @ExampleObject(name = "Candidatura não encontrada",
+                                                    value = "{\"messages\":[\"Candidatura com idVaga [673ba6ad0974490d72b52ed9] não encontrada para o estudante\"]}"),
+                                            @ExampleObject(name = "Estudante não encontrado",
+                                                    value = "{\"messages\":[\"Estudante com id [673ba6ad0974490d72b52ed9] não encontrado\"]}")
+                                    }
+                            )),
+                    @ApiResponse(
+                            responseCode = "409",
+                            description = "Conflict",
+                            content = @Content(
+                                    mediaType = MediaType.APPLICATION_JSON_VALUE,
+                                    examples = {
+                                            @ExampleObject(name = "Estudante sem candidaturas",
+                                                    value = "{\"messages\":[\"O estudante não possui candidaturas\"]}")
+                                    }
+                            ))
+            })
+    ResponseEntity<Void> deletarCandidatura(
+            @Parameter(in = PATH, required = true, description = "Id do estudante") String id,
+            @Parameter(in = PATH, required = true, description = "Id da vaga") String idVaga);
 }
